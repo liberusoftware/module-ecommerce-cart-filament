@@ -1,0 +1,42 @@
+{
+    "$schema": "https://schemas.liberu.dev/module/v1.json",
+    "name": "ecommerce-cart-filament",
+    "display_name": "Cart Administration",
+    "description": "Optional Filament administration for the Cart domain module. A cart belongs to the shopper, so this reads: who owns it, what is in it, what it is worth, and whether the totals on the screen can be believed. The only writes are the two that change nothing the shopper chose.",
+    "version": "0.1.0",
+    "category": "presentation",
+    "provider": "Liberu\\Ecommerce\\Cart\\Filament\\CartFilamentServiceProvider",
+    "requires": {
+        "php": "^8.5",
+        "laravel": "^13.0",
+        "packages": {
+            "liberusoftware/module-manager": "^1.4",
+            "liberusoftware/ecommerce-cart": "^0.1"
+        }
+    },
+    "presentation": {
+        "filament": {
+            "admin": [
+                "Liberu\\Ecommerce\\Cart\\Filament\\CartPlugin"
+            ]
+        }
+    },
+    "capabilities": [
+        "ecommerce.cart.filament"
+    ],
+    "default_enabled": false,
+    "features": [
+        "Carts",
+        "Cart lines",
+        "Cart standing",
+        "Owner identity without the guest token",
+        "Stale cart detection",
+        "Stale totals detection",
+        "Recalculate totals",
+        "Mark a stale cart abandoned",
+        "Team scoping",
+        "Read-only cart lines",
+        "Integer minor units",
+        "Domain events"
+    ]
+}
