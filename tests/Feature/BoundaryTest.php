@@ -1,6 +1,7 @@
 <?php
 
 use Liberu\Ecommerce\Cart\Actions\AddLine;
+use Liberu\Ecommerce\Cart\Actions\RecalculateCart;
 use Liberu\Ecommerce\Cart\Exceptions\UnknownProductModel;
 use Liberu\Ecommerce\Cart\Filament\Resources\CartResource\Pages\ListCarts;
 use Liberu\Ecommerce\Cart\Filament\Resources\CartResource\Pages\ViewCart;
@@ -34,10 +35,14 @@ it('renders a cart whose product ids nothing in the database has heard of', func
     // the name, SKU and unit price on the line are what the shopper was shown,
     // copied at the moment they chose it.
     app(AddLine::class)->handle($cart, 987654321, 'Waxed Jacket', Money::of(1999, 'GBP'), 2, sku: 'JKT-001');
+    // Through the domain action, so the amounts on the view page are the cart's
+    // own rather than a line's: 2 × 19.99, arrived at with no catalogue anywhere
+    // in the application to have priced it.
+    app(RecalculateCart::class)->handle($cart);
 
     Livewire::test(ViewCart::class, ['record' => $cart->getRouteKey()])
         ->assertOk()
-        ->assertSee('19.99 GBP');
+        ->assertSee('39.98 GBP');
 
     Livewire::test(LinesRelationManager::class, [
         'ownerRecord' => $cart,
