@@ -169,7 +169,7 @@ host having set the one flag standing between staff and a shopper's basket.
 
 | Project | Repository | Purpose |
 | --- | --- | --- |
-| **Boilerplate** | [liberusoftware/boilerplate-laravel](https://github.com/liberusoftware/boilerplate-laravel) | Shared Laravel application foundation and reference composition |
+| **Boilerplate** | [liberusoftware/boilerplate-laravel](https://github.com/liberusoftware/project-boilerplate-laravel-filament) | Shared Laravel application foundation and reference composition |
 | **CMS** | [liberu-cms/cms-laravel](https://github.com/liberu-cms/cms-laravel) | Structured content, publishing, media, multisite, and headless delivery |
 | **CRM** | [liberu-crm/crm-laravel](https://github.com/liberu-crm/crm-laravel) | Customer data, sales, marketing, service, and customer success |
 | **Billing** | [liberu-billing/billing-laravel](https://github.com/liberu-billing/billing-laravel) | Products, subscriptions, invoicing, payments, and provisioning |
@@ -211,3 +211,19 @@ Thank you to everyone who helps improve Liberu.
 </a>
 
 [View the full contributors graph](https://github.com/liberusoftware/module-ecommerce-cart-filament/graphs/contributors).
+
+<!-- module-presentation-guide:begin -->
+## Presentation architecture and project hosts
+
+- Capability/source key: `planned:ecommerce:cart`.
+- Actual Composer identity: `liberusoftware/ecommerce-cart-filament`.
+- [Filament capability plan](https://github.com/liberusoftware/documentation/blob/main/projects/ecommerce/filament/cart.md) · [Filament standard](https://github.com/liberusoftware/documentation/blob/main/standards/FILAMENT.md) · [Module architecture](https://github.com/liberusoftware/documentation/blob/main/architecture/MODULES.md).
+
+The application owns panel composition, routing, session integration and deployment. This module owns its focused presentation and delegates domain behavior to reviewed public owner contracts. Keep host App aliases, duplicate records and client-only authorization outside reusable package boundaries.
+
+Documented consumer project families:
+
+- [Ecommerce](https://github.com/liberusoftware/project-ecommerce-laravel-filament): Catalogs, checkout, orders and fulfillment.
+
+Other web, mobile and desktop presentations are listed in the [project catalog](https://github.com/liberusoftware/documentation/blob/main/projects/REPOSITORIES.md). Those skeletons provide starting structures; links do not establish feature parity, compatible releases or completed device/API integrations. Independent presentation packages keep their own Composer, npm or pub metadata.
+<!-- module-presentation-guide:end -->
